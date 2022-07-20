@@ -1,0 +1,33 @@
+[
+    {
+        "arguments": [
+            "/home/chris/.emsdk/upstream/bin/clang",
+            "-c",
+            "-target",
+            "wasm32-unknown-emscripten",
+            "-DEMSCRIPTEN",
+            "-D__EMSCRIPTEN_major__=3",
+            "-D__EMSCRIPTEN_minor__=1",
+            "-D__EMSCRIPTEN_tiny__=16",
+            "-fignore-exceptions",
+            "-fvisibility=default",
+            "-mllvm",
+            "-combiner-global-alias-analysis=false",
+            "-mllvm",
+            "-enable-emscripten-sjlj",
+            "-mllvm",
+            "-disable-lsr",
+            "-Werror=implicit-function-declaration",
+            "-Xclang",
+            "-iwithsysroot/include/SDL",
+            "--sysroot=/home/chris/.emsdk/upstream/emscripten/cache/sysroot",
+            "-Xclang",
+            "-iwithsysroot/include/compat",
+            "-o",
+            "/tmp/emscripten_temp_gszggzrb/hello3_0.o",
+            "hello3.c"
+        ],
+        "directory": "/home/chris/wasm_reference/hello3",
+        "file": "hello3.c"
+    }
+]
