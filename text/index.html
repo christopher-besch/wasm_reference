@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Simple template</title>
+</head>
+
+<body>
+
+    <script>
+        const global = new WebAssembly.Global({value: "i32", mutable: true}, 0);
+        let memory = new WebAssembly.Memory({initial: 1});
+        const import_obj = {
+            func: {
+                log_str: (offset, length) => {
+                    let bytes = new Uint8Array(memory.buffer, offset, length);
+                    let string = new TextDecoder("utf8").decode(bytes);
+                    console.log(string);
+                },
+            },
+            js: {
+                global: global,
+                mem: memory,
+            },
+        };
+        WebAssembly.instantiateStreaming(fetch('add.wasm'), import_obj)
+            .then(obj => {
+                console.log(obj.instance.exports.add(42, 21));
+
+                console.log(obj.instance.exports.const_add(42));
+
+                console.log(obj.instance.exports.get_glob());
+                obj.instance.exports.inc_glob();
+                console.log(obj.instance.exports.get_glob());
+
+                obj.instance.exports.print_string();
+            });
+    </script>
+</body>
+
+</html>
