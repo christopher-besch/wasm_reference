@@ -35,6 +35,11 @@
                 console.log(obj.instance.exports.get_glob());
 
                 obj.instance.exports.print_string();
+
+                console.log(obj.instance.exports.call_by_index(0));
+                console.log(obj.instance.exports.call_by_index(1));
+                obj.instance.exports.inc_glob();
+                console.log(obj.instance.exports.call_by_index(1));
             });
     </script>
 </body>
